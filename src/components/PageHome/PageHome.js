@@ -1,12 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 class PageHome extends Component {
   render () {
     return (
       <section>
-        <h1>
-Home
-        </h1>
+        <h1>Home</h1>
       </section>
     )
   }

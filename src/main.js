@@ -16,9 +16,9 @@ window.__app_root = document.getElementById('app')
 
 const render = () => {
   ReactDom.render(
-    <Provider store={store} >
+    <Provider store={ store } >
       <Layout>
-        <Router routes={routes} />
+        <Router routes={ routes } />
       </Layout>
     </Provider>,
     window.__app_root

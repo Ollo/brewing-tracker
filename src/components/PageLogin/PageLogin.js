@@ -14,7 +14,7 @@ class PageLogin extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSubmit = (e) => {
@@ -26,7 +26,7 @@ class PageLogin extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    // if ()
+    // if logged in user object changes push to /home
   }
 
   render () {
@@ -37,9 +37,9 @@ class PageLogin extends Component {
         </header>
         <form onSubmit={ this.handleSubmit }>
           <label htmlFor='userName'>User Name</label>
-          <input name='userName' id='userName' type='text' value={ this.state.username } onChange={this.handleChange} />
+          <input name='userName' id='userName' type='text' value={ this.state.username } onChange={ this.handleChange } />
           <label htmlFor='password'>Password</label>
-          <input name='password' id='password' type='password' value={ this.state.pasword } onChange={this.handleChange} />
+          <input name='password' id='password' type='password' value={ this.state.pasword } onChange={ this.handleChange } />
           <button type='submit'>Login</button>
         </form>
       </section>
