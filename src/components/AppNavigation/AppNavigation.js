@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import BeerIcon from '../BeerIcon'
@@ -6,10 +6,11 @@ import { Link } from 'redux-json-router'
 
 import './AppNavigation.scss'
 
-class AppNavigation extends PureComponent {
+class AppNavigation extends Component {
+
   render () {
-    const { authUser, logout } = this.props
-    console.log(authUser)
+
+    const { loggedIn, logout } = this.props
     return (
       <nav role='navigation' className='App-Header'>
         <figure className='App-Logo'>
@@ -17,7 +18,7 @@ class AppNavigation extends PureComponent {
           <h1>Brewing Tracker</h1>
         </figure>
         <ul className='App-Navigation'>
-          { !authUser
+          { loggedIn
             ? <li className='App-Navigation--link'>
               <Link to='/login' onClick={ logout }>Logout</Link>
             </li>
@@ -26,12 +27,14 @@ class AppNavigation extends PureComponent {
         </ul>
       </nav>
     )
+
   }
+
 }
 
 AppNavigation.propTypes = {
-  authUser: PropTypes.bool,
-  logout: PropTypes.func
+  loggedIn: PropTypes.bool.isRequired,
+  logout: PropTypes.func.isRequired
 }
 
 export default AppNavigation

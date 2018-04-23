@@ -8,10 +8,15 @@ const initialState = {
 }
 
 const authReducer = (state = initialState, action) => {
+
   switch (action.type) {
+
     case AUTHED_USER_FETCHING:
       return {
         ...state,
+        user: {},
+        loggedIn: false,
+        error: null,
         fetching: true
       }
     case AUTHED_USER_SAVE:
@@ -25,17 +30,23 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload.error,
-        fetching: false
+        fetching: false,
+        user: {},
+        loggedIn: false
       }
     case AUTHED_USER_DELETE:
       return {
         ...state,
         user: {},
-        loggedIn: false
+        error: null,
+        loggedIn: false,
+        fetching: false
       }
     default:
       return state
+
   }
+
 }
 
 export default authReducer

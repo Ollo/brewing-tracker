@@ -1,26 +1,31 @@
-
-/*
- * Import firebase from 'state/firebase'
- * import { replace } from 'redux-json-router'
- */
+import firebase from 'state/firebase'
+import { push } from 'redux-json-router'
+import { authUserSave } from 'state/auth/actions'
 
 const authMiddleware = (store) => (next) => (action) => {
 
-  /*
-   * TODO: Error: Actions must be plain objects. Use custom middleware for async actions.
-   * https://firebase.google.com/docs/auth/web/manage-users?authuser=0
-   */
+  const state = store.getState()
+  const user = firebase.auth().getCurrentUser
 
-  /*
-   * Firebase.auth().onAuthStateChanged((user) => {
-   *   if (user) {
-   *     next()
-   *   } else {
-   *     replace('/login')
-   *     next()
-   *   }
-   * })
-   */
+  if (!user && !state.auth.user) {
+
+    store.dispatch(push('/login'))
+    next(action)
+
+  } else if (user && !state.auth.user) {
+
+    store.dispatch(authUserSave(user))
+    store.dispatch(push('/'))
+    next(action)
+
+  } else {
+
+    store.dispatch(push('/'))
+    next(action)
+
+  }
+  next(action)
+
 }
 
 export default authMiddleware

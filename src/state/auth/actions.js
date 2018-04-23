@@ -20,7 +20,9 @@ export const authUserSave = (user) => (
 export const authUserError = (e) => (
   {
     'type': AUTHED_USER_ERROR,
-    'payload': {'error': e}
+    'payload': {
+      'error': e
+    }
   }
 )
 
@@ -41,11 +43,15 @@ export const authUser = (email, password) => (dispatch) => (
 export const userLogout = () => (dispatch) => (
   api.auth().signOut()
     .then(() => {
+
       dispatch(authUserDelete())
       console.warn('User Logged Out Successfully.')
+
     })
     .catch((e) => {
+
       dispatch(authUserError(e))
       console.error('There was an error logging out', e)
+
     })
 )

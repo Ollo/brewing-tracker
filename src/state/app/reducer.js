@@ -3,7 +3,9 @@ import {APP_LOADING} from './actions'
 const initialState = {'loading': false}
 
 const appReducer = (state = initialState, action) => {
+
   switch (action.type) {
+
     case APP_LOADING:
       return {
         ...state,
@@ -11,7 +13,9 @@ const appReducer = (state = initialState, action) => {
       }
     default:
       return state
+
   }
+
 }
 
 export default appReducer
