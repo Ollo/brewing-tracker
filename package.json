@@ -1,11 +1,11 @@
 {
-  "name": "shell",
-  "description": "a starting point for front end projects",
+  "name": "brewing-tracker",
+  "description": "a webapp for tracking brewing recipes",
   "version": "0.1.0",
   "author": "<joshua@ollomedia.com> Joshua Ray",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ollo/shell.git"
+    "url": "https://github.com/Ollo/brewing-tracker.git"
   },
   "scripts": {
     "dev": "webpack-dev-server --mode='development'",
