@@ -1,1 +1,1 @@
-export const selectLoadingApp = state => state.app.loading
+export const selectLoadingApp = (state) => state.app.loading

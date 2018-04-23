@@ -1,1 +1,1 @@
-export const loggedInSelector = state => state.auth.loggedIn
+export const loggedInSelector = (state) => state.auth.loggedIn
