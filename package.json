@@ -1,0 +1,46 @@
+{
+  "name": "shell",
+  "description": "a starting point for front end projects",
+  "version": "0.1.0",
+  "author": "<joshua@ollomedia.com> Joshua Ray",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ollo/shell.git"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --mode='development'",
+    "build": "NODE_ENV='production' webpack",
+    "start": "http-server './dist'",
+    "prestart": "npm run -s build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^4.13.1",
+    "http-server": "^0.10.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-json-router": "^1.3.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.8.3",
+    "redux-logger": "^3.0.6",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15",
+    "webpack-dev-server": "^3.1.3"
+  }
+}
