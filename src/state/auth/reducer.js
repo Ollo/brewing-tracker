@@ -8,7 +8,6 @@ const initialState = {
 }
 
 const authReducer = (state = initialState, action) => {
-
   switch (action.type) {
 
     case AUTHED_USER_FETCHING:
@@ -46,7 +45,6 @@ const authReducer = (state = initialState, action) => {
       return state
 
   }
-
 }
 
 export default authReducer

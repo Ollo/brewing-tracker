@@ -43,15 +43,11 @@ export const authUser = (email, password) => (dispatch) => (
 export const userLogout = () => (dispatch) => (
   api.auth().signOut()
     .then(() => {
-
       dispatch(authUserDelete())
       console.warn('User Logged Out Successfully.')
-
     })
     .catch((e) => {
-
       dispatch(authUserError(e))
       console.error('There was an error logging out', e)
-
     })
 )

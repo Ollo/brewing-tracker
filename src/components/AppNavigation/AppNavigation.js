@@ -9,7 +9,6 @@ import './AppNavigation.scss'
 class AppNavigation extends Component {
 
   render () {
-
     const { loggedIn, logout } = this.props
     return (
       <nav role='navigation' className='App-Header'>
@@ -27,7 +26,6 @@ class AppNavigation extends Component {
         </ul>
       </nav>
     )
-
   }
 
 }

@@ -7,29 +7,23 @@ import { push } from 'redux-json-router'
 class PageLogin extends Component {
 
   constructor (props) {
-
     super(props)
     this.state = {
       userName: '',
       password: ''
     }
-
   }
 
   handleChange = (e) => {
-
     this.setState({ [e.target.name]: e.target.value })
-
   }
 
   handleSubmit = (e) => {
-
     const { authUser } = this.props
     e.preventDefault()
     authUser(this.state.userName, this.state.password)
       .then(() => this.props.push('/'))
       .catch(e => console.error(e))
-
   }
 
   componentWillReceiveProps (nextProps) {
@@ -37,7 +31,6 @@ class PageLogin extends Component {
   }
 
   render () {
-
     return (
       <section>
         <header>
@@ -52,7 +45,6 @@ class PageLogin extends Component {
         </form>
       </section>
     )
-
   }
 
 }

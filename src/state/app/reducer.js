@@ -3,7 +3,6 @@ import {APP_LOADING} from './actions'
 const initialState = {'loading': false}
 
 const appReducer = (state = initialState, action) => {
-
   switch (action.type) {
 
     case APP_LOADING:
@@ -15,7 +14,6 @@ const appReducer = (state = initialState, action) => {
       return state
 
   }
-
 }
 
 export default appReducer

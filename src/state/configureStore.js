@@ -8,7 +8,6 @@ import authMiddleware from 'state/middleware/auth'
 import { buildRootReducer } from './reducers'
 
 export default (initialState = {}, history) => {
-
   // Logger Config
   const reduxLogger = createLogger({
     'collapsed': true,
@@ -37,16 +36,11 @@ export default (initialState = {}, history) => {
   store.asyncReducers = {}
 
   if (module.hot) {
-
     module.hot.accept('./reducers', () => {
-
       const reducers = require('./reducers').default
       store.replaceReducer(reducers(store.asyncReducers))
-
     })
-
   }
 
   return store
-
 }

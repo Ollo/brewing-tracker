@@ -15,7 +15,6 @@ startListener(history, store)
 window.__app_root = document.getElementById('app')
 
 const render = () => {
-
   ReactDom.render(
     <Provider store={ store } >
       <Layout>
@@ -24,14 +23,11 @@ const render = () => {
     </Provider>,
     window.__app_root
   )
-
 }
 
 // Set up hotmodule replacement
 if (module.hot) {
-
   module.hot.accept()
-
 }
 
 // Boom
