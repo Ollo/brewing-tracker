@@ -1,5 +1,5 @@
 import firebase from 'state/firebase'
-import { replace } from 'redux-json-router'
+import { push } from 'redux-json-router'
 import { authUserSave } from 'state/auth/actions'
 
 const authMiddleware = (store) => (next) => (action) => {
@@ -7,13 +7,13 @@ const authMiddleware = (store) => (next) => (action) => {
   const user = firebase.auth().getCurrentUser
 
   if (!user && !state.auth.user.uid) {
-    store.dispatch(replace('/login'))
+    store.dispatch(push('/login'))
     return next(action)
   } else if (user && !state.auth.user.uid) {
     store.dispatch(authUserSave(user))
+    store.dispath(push('/'))
     return next(action)
   } else {
-    store.dispatch(replace('/'))
     return next(action)
   }
 }

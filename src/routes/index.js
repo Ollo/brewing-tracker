@@ -1,13 +1,11 @@
-import PageHome from 'components/PageHome'
-import PageLogin from 'components/PageLogin'
 
 export default [
   {
     'path': '/',
-    'load': () => Promise.resolve(PageHome)
+    'load': () => Promise.resolve(require('../components/PageHome').default)
   },
   {
     'path': '/login',
-    'load': () => Promise.resolve(PageLogin)
+    'load': () => Promise.resolve(require('../components/PageLogin').default)
   }
 ]
