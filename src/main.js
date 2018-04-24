@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-import {Provider} from 'react-redux'
-import {Router, createBrowserHistory, startListener} from 'redux-json-router'
+import { Provider } from 'react-redux'
+import { Router, createBrowserHistory, startListener } from 'redux-json-router'
 import configureStore from 'state/configureStore'
 import Layout from 'components/Layout'
 import routes from 'routes'

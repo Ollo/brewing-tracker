@@ -1,31 +1,60 @@
 import { applyMiddleware, compose, createStore } from 'redux'
-import { routerMiddleware } from 'redux-json-router'
+
+import firebase from 'firebase'
+import 'firebase/firestore'
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
+import { reduxFirestore } from 'redux-firestore'
+
 import thunk from 'redux-thunk'
-
 import { createLogger } from 'redux-logger'
-import authMiddleware from 'state/middleware/auth'
-
+import { routerMiddleware } from 'redux-json-router'
 import { buildRootReducer } from './reducers'
 
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyB-fZPvOJWLaHlrvqYBY8WomCdM2eWZjLw',
+  authDomain: 'brew-tracker-822bf.firebaseapp.com',
+  databaseURL: 'https://brew-tracker-822bf.firebaseio.com',
+  projectId: 'brew-tracker-822bf',
+  storageBucket: 'brew-tracker-822bf.appspot.com',
+  messagingSenderId: '612077944225'
+}
+
+const config = {
+  userProfile: 'users', // firebase root where user profiles are stored
+  enableLogging: false, // enable/disable Firebase's database logging
+  useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+}
+
+// initialize firebase instance
+firebase.initializeApp(firebaseConfig)
+
+// initialize Firestore
+firebase.firestore()
+
+// Add Firebase and Firestore to compose
+const createStoreWithFirebase = compose(
+  reactReduxFirebase(firebase, config),
+  reduxFirestore(firebase)
+)(createStore)
+
+
 export default (initialState = {}, history) => {
-  // Logger Config
+  
   const reduxLogger = createLogger({
     'collapsed': true,
     'timestamp': false
   })
 
-  // Middleware Config
   const middleWare = [
-    thunk,
     reduxLogger,
-    routerMiddleware(history),
-    authMiddleware
+    thunk.withExtraArgument(getFirebase),
+    routerMiddleware(history)
   ]
 
-  // Enhancers
   const enhancers = []
 
-  const store = createStore(
+  const store = createStoreWithFirebase(
     buildRootReducer(),
     initialState,
     compose(

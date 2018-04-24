@@ -8,18 +8,6 @@ import { loggedInSelector } from 'state/auth/selectors'
 
 class Layout extends Component {
 
-  // authGaurd = (loggedIn) => {
-  //   if (loggedIn) {
-  //     return
-  //   }
-  //   this.props.push
-  // }
-
-  componentWillReceiveProps () {
-    if (!this.props.loggedIn) {
-      this.props.push('/login')
-    }
-  }
   render () {
     const { userLogout, loggedIn } = this.props
     return (
