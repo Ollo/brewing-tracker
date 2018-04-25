@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firebaseConnect } from 'react-redux-firebase'
@@ -22,7 +21,7 @@ class PageLogin extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password)
+    // this.props.firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password)
   }
 
   render () {
