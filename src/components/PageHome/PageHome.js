@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import PageHeader from 'components/PageHeader'
 
 class PageHome extends Component {
 
   render () {
     return (
       <section>
-        <h1>Home</h1>
+        <PageHeader title='Home' />
       </section>
     )
   }

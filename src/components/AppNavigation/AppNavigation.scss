@@ -1,39 +1,52 @@
 body {
-	font-family: sans-serif;
+  margin: 0;
 }
 
 .App-Header {
-	display: flex;
-	justify-content: space-between;
-	padding: 20px;
-	max-height: 60px;
-	background: orange;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  background: orange;
+  margin-bottom: 20px;
+  border-bottom: 4px solid darken(orange, 5%);
 }
 
 .App-Logo {
-	display: flex;
-	margin: 0;
-	img {
-		width: 40px;
-		height: auto;
-		margin-right: 10px;
-	}
+  display: inline;
+  margin: 0;
+  &--icon {
+    width: 40px;
+    height: auto;
+  }
+  &--title {
+    color: #333;
+    font-size: 2.2rem;
+    letter-spacing: 0.1rem;
+  } 
 }
 
 .App-Navigation {
-	display: inline-flex;
-	align-items: center;
-	margin: 0;
-	padding: 0;
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border-top: 2px dashed darken(orange, 5%);
 }
 
 .App-Navigation--link {
-	list-style: none;
-	margin: 0 10px;
-	margin: 0 10px;
-	a {
-		color: white;
-		text-decoration: none;
-	}
+  list-style: none;
+  margin: 10px 20px 0 0;
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
 
+.App-Logout {
+  background: transparent;
+  border: 1px solid black;
+  color: black;
+  &:hover {
+    background: lighten(black, 10%);
+  }
+}

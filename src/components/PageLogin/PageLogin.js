@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { authUser } from 'state/auth/actions'
-import { push } from 'redux-json-router'
+import { firebaseConnect } from 'react-redux-firebase'
+
+import PageHeader from 'components/PageHeader'
 
 class PageLogin extends Component {
 
@@ -19,23 +21,14 @@ class PageLogin extends Component {
   }
 
   handleSubmit = (e) => {
-    const { authUser } = this.props
     e.preventDefault()
-    authUser(this.state.userName, this.state.password)
-      .then(() => this.props.push('/'))
-      .catch(e => console.error(e))
-  }
-
-  componentWillReceiveProps (nextProps) {
-    // if logged in user object changes push to /home
+    this.props.firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password)
   }
 
   render () {
     return (
       <section>
-        <header>
-          <h2>Login</h2>
-        </header>
+        <PageHeader title='Login' />
         <form onSubmit={ this.handleSubmit }>
           <label htmlFor='userName'>User Name</label>
           <input name='userName' id='userName' type='text' value={ this.state.username } onChange={ this.handleChange } />
@@ -50,8 +43,14 @@ class PageLogin extends Component {
 }
 
 PageLogin.propTypes = {
-  push: PropTypes.func,
-  authUser: PropTypes.func
 }
 
-export default connect(null, { authUser, push })(PageLogin)
+const mapDispatchToProps = {}
+
+const mapStateToProps = (state) => ({
+})
+
+export default compose(
+  firebaseConnect(),
+  connect(mapStateToProps, mapDispatchToProps)
+)(PageLogin)

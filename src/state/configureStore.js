@@ -10,7 +10,6 @@ import { createLogger } from 'redux-logger'
 import { routerMiddleware } from 'redux-json-router'
 import { buildRootReducer } from './reducers'
 
-
 const firebaseConfig = {
   apiKey: 'AIzaSyB-fZPvOJWLaHlrvqYBY8WomCdM2eWZjLw',
   authDomain: 'brew-tracker-822bf.firebaseapp.com',
@@ -30,7 +29,8 @@ const config = {
 firebase.initializeApp(firebaseConfig)
 
 // initialize Firestore
-firebase.firestore()
+const firestore = firebase.firestore()
+firestore.settings({ timestampsInSnapshots: true })
 
 // Add Firebase and Firestore to compose
 const createStoreWithFirebase = compose(
@@ -38,9 +38,7 @@ const createStoreWithFirebase = compose(
   reduxFirestore(firebase)
 )(createStore)
 
-
 export default (initialState = {}, history) => {
-  
   const reduxLogger = createLogger({
     'collapsed': true,
     'timestamp': false

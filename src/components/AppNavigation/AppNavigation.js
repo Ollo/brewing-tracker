@@ -9,21 +9,30 @@ import './AppNavigation.scss'
 class AppNavigation extends Component {
 
   render () {
-    const { loggedIn, logout } = this.props
+    const { logout, loggedIn } = this.props
     return (
       <nav role='navigation' className='App-Header'>
-        <figure className='App-Logo'>
-          <BeerIcon />
-          <h1>Brewing Tracker</h1>
-        </figure>
-        <ul className='App-Navigation'>
-          { loggedIn
-            ? <li className='App-Navigation--link'>
-              <Link to='/login' onClick={ logout }>Logout</Link>
+        <div className='container'>
+          <figure className='App-Logo'>
+            <BeerIcon className='App-Logo--icon' />
+            <h1 className='App-Logo--title'>Brewing Tracker</h1>
+          </figure>
+
+          <ul className='App-Navigation'>
+            <li className='App-Navigation--link'>
+              <Link to='/'>Home</Link>
             </li>
+            <li className='App-Navigation--link'>
+              <Link to='/add'>Add Recipe</Link>
+            </li>
+          </ul>
+
+          { loggedIn
+            ? <button className='App-Logout float-right' onClick={ logout }>Logout</button>
             : null
           }
-        </ul>
+
+        </div>
       </nav>
     )
   }

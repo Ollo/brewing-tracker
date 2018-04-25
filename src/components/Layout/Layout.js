@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { push } from 'redux-json-router'
+import { firebaseConnect } from 'react-redux-firebase'
 import AppNavigation from 'components/AppNavigation'
-import { userLogout } from 'state/auth/actions'
-import { loggedInSelector } from 'state/auth/selectors'
 
 class Layout extends Component {
 
   render () {
-    const { userLogout, loggedIn } = this.props
+    const { loggedIn, firebase } = this.props
     return (
-      <div className='container'>
-        <AppNavigation loggedIn={ loggedIn } logout={ userLogout }/>
-        { this.props.children }
+      <div>
+        <AppNavigation loggedIn={ loggedIn } logout={ firebase.logout } />
+        <main className='container'>
+          { this.props.children }
+        </main>
       </div>
     )
   }
@@ -22,18 +23,19 @@ class Layout extends Component {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  userLogout: PropTypes.func.isRequired,
-  push: PropTypes.func,
+  firebase: PropTypes.shape({
+    logout: PropTypes.func.isRequired
+  }),
   loggedIn: PropTypes.bool
 }
 
 const mapDispatchToProps = {
-  userLogout,
-  push
 }
 
 const mapStateToProps = (state) => ({
-  loggedIn: loggedInSelector(state)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout)
+export default compose(
+  firebaseConnect(),
+  connect(mapStateToProps, mapDispatchToProps)
+)(Layout)
