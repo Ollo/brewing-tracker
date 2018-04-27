@@ -7,14 +7,14 @@ class PageAdd extends PureComponent {
     return (
       <section className='page'>
         <PageHeader title='Add Recipe' />
-        <form>
+        <form className='pure-form pure-form-stacked'>
           <label>Title</label>
           <input type='text' id='recipeTitle' name='recipeTitle' />
 
           <label>Description</label>
           <textarea id='recipeDescription' name='recipeDescription' />
 
-          <button type='submit'>Save</button>
+          <button type='submit' className='pure-button'>Save</button>
         </form>
       </section>
     )
