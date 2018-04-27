@@ -24,7 +24,7 @@ class PageLogin extends Component {
 
   render () {
     return (
-      <section>
+      <section className='page'>
         <PageHeader title='Login' />
         <form onSubmit={ this.handleSubmit }>
           <label htmlFor='userName'>User Name</label>

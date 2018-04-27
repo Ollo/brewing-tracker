@@ -5,7 +5,7 @@ class PageHome extends Component {
 
   render () {
     return (
-      <section>
+      <section className='page'>
         <PageHeader title='Home' />
       </section>
     )

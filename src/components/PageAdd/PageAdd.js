@@ -5,7 +5,7 @@ class PageAdd extends PureComponent {
 
   render () {
     return (
-      <section>
+      <section className='page'>
         <PageHeader title='Add Recipe' />
         <form>
           <label>Title</label>

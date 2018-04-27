@@ -1,0 +1,23 @@
+#########################
+## Starter config file
+#########################
+# Linter Options
+options:
+  # Don't merge default rules
+  merge-default-rules: false
+  # Set the formatter to 'html'
+  formatter: stylish
+  # Raise an error if more than 50 warnings are generated
+  max-warnings: 1500
+# File Options
+files:
+  include: 'src/**/*.s+(a|c)ss'
+rules:
+  property-sort-order:
+  - 0
+  -
+    order:
+      - display
+      - margin
+    ignore-custom-properties: true
+  

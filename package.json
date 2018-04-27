@@ -16,7 +16,9 @@
     "build": "npm run lint && NODE_ENV='production' webpack",
     "start": "http-server './dist'",
     "prestart": "npm run -s build",
-    "lint": "eslint src",
+    "lint": "npm run lint:js && npm run lint:sass",
+    "lint:js": "eslint src && sass-lint",
+    "lint:sass": "sass-lint",
     "lint:fix": "eslint --fix src"
   },
   "main": "./src/main.js",
