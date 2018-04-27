@@ -9,10 +9,9 @@ import './Layout.scss'
 class Layout extends Component {
 
   render () {
-    const { loggedIn } = this.props
     return (
       <div>
-        <AppNavigation loggedIn={ loggedIn } logout={ () => console.log('Logout') } />
+        <AppNavigation />
         <main className='container'>
           { this.props.children }
         </main>
@@ -23,8 +22,7 @@ class Layout extends Component {
 }
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  loggedIn: PropTypes.bool
+  children: PropTypes.node.isRequired
 }
 
 const mapDispatchToProps = {

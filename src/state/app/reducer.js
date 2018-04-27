@@ -1,6 +1,8 @@
 import {APP_LOADING} from './actions'
 
-const initialState = {'loading': false}
+const initialState = {
+  'loading': false
+}
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -1,15 +1,12 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-
+import React, { PureComponent } from 'react'
 import BeerIcon from '../BeerIcon'
 import { Link } from 'redux-json-router'
 
 import './AppNavigation.scss'
 
-class AppNavigation extends Component {
+class AppNavigation extends PureComponent {
 
   render () {
-    const { logout, loggedIn } = this.props
     return (
       <nav role='navigation' className='App-Header'>
         <div className='container'>
@@ -26,22 +23,11 @@ class AppNavigation extends Component {
               <Link to='/add'>Add Recipe</Link>
             </li>
           </ul>
-
-          { loggedIn
-            ? <button className='App-Logout float-right' onClick={ logout }>Logout</button>
-            : null
-          }
-
         </div>
       </nav>
     )
   }
 
-}
-
-AppNavigation.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
-  logout: PropTypes.func.isRequired
 }
 
 export default AppNavigation
