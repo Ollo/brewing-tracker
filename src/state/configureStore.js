@@ -12,9 +12,9 @@ export default (initialState = {}, history) => {
   })
 
   const middleWare = [
-    reduxLogger,
     thunk,
-    routerMiddleware(history)
+    routerMiddleware(history),
+    reduxLogger
   ]
 
   const enhancers = []

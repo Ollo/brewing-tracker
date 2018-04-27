@@ -14,7 +14,7 @@ class PageHome extends Component {
   }
 
   renderRecipes = (recipes) => recipes.map((recipe, i) => (
-    <div key={ `${recipe.id}` }>
+    <div key={ `${recipe.name}-${recipe.id}` }>
       <h3>{ recipe.name }</h3>
       <p>{ recipe.id }</p>
     </div>
@@ -49,13 +49,13 @@ PageHome.propTypes = {
   isLoading: PropTypes.bool.isRequired
 }
 
-const mapDispatch = {
+const mapDispatchtoProps = {
   loadRecipes
 }
 
-const mapState = (state) => ({
+const mapStateToProps = (state) => ({
   isLoading: selectLoadingApp(state),
   recipes: selectRecipes(state)
 })
 
-export default connect(mapState, mapDispatch)(PageHome)
+export default connect(mapStateToProps, mapDispatchtoProps)(PageHome)

@@ -1,4 +1,4 @@
-import { SAVE_RECIPE } from './actions'
+import { SAVE_RECIPES } from './actions'
 
 const initialState = {
   recipes: []
@@ -6,13 +6,10 @@ const initialState = {
 
 const recipeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SAVE_RECIPE:
+    case SAVE_RECIPES:
       return {
         ...state,
-        recipes: [
-          ...state.recipes,
-          {...action.payload}
-        ]
+        recipes: { ...action.payload }
       }
     default:
       return state
