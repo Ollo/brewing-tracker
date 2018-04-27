@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { firebaseConnect } from 'react-redux-firebase'
 
 import PageHeader from 'components/PageHeader'
 
@@ -21,7 +19,7 @@ class PageLogin extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    // this.props.firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password)
+    console.log(e)
   }
 
   render () {
@@ -49,7 +47,4 @@ const mapDispatchToProps = {}
 const mapStateToProps = (state) => ({
 })
 
-export default compose(
-  firebaseConnect(),
-  connect(mapStateToProps, mapDispatchToProps)
-)(PageLogin)
+export default connect(mapStateToProps, mapDispatchToProps)(PageLogin)

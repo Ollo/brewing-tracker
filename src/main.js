@@ -7,8 +7,6 @@ import configureStore from 'state/configureStore'
 import Layout from 'components/Layout'
 import routes from 'routes'
 
-import 'milligram/dist/milligram.min.css'
-
 const history = createBrowserHistory()
 const store = configureStore(window.__INITIAL_STATE__, history)
 

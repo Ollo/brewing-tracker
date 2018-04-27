@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { firebaseConnect } from 'react-redux-firebase'
 import AppNavigation from 'components/AppNavigation'
 
 class Layout extends Component {
 
   render () {
-    const { loggedIn, firebase } = this.props
+    const { loggedIn } = this.props
     return (
       <div>
-        <AppNavigation loggedIn={ loggedIn } logout={ firebase.logout } />
+        <AppNavigation loggedIn={ loggedIn } logout={ () => console.log('Logout') } />
         <main className='container'>
           { this.props.children }
         </main>
@@ -23,9 +21,6 @@ class Layout extends Component {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  firebase: PropTypes.shape({
-    logout: PropTypes.func.isRequired
-  }),
   loggedIn: PropTypes.bool
 }
 
@@ -35,7 +30,4 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => ({
 })
 
-export default compose(
-  firebaseConnect(),
-  connect(mapStateToProps, mapDispatchToProps)
-)(Layout)
+export default connect(mapStateToProps, mapDispatchToProps)(Layout)
