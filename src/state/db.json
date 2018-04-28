@@ -1,11 +1,5 @@
 {
   "recipes": [
-    {
-      "name": "ipa",
-      "id": "1234"
-    }, {
-      "name": "porter",
-      "id": "1235"
-    }
+    
   ]
 }

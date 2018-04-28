@@ -1,24 +1,42 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { push } from 'redux-json-router'
 
-import { loadRecipes } from 'state/recipes/actions'
+import { loadAllRecipes } from 'state/recipes/actions'
 import { selectRecipes } from 'state/recipes/selectors'
 import { selectLoadingApp } from 'state/app/selectors'
 import PageHeader from 'components/PageHeader'
+import Card from 'components/Card'
 
 class PageHome extends Component {
 
   componentDidMount () {
-    this.props.loadRecipes()
+    this.props.loadAllRecipes()
   }
 
-  renderRecipes = (recipes) => recipes.map((recipe, i) => (
-    <div key={ `${recipe.name}-${recipe.id}` }>
-      <h3>{ recipe.name }</h3>
-      <p>{ recipe.id }</p>
-    </div>
-  ))
+  renderRecipes = (recipes) => {
+    if (recipes.length <= 0) {
+      return (
+        <Card className='pure-u-5-5'>
+          <h3>No Recipes Created Yet.</h3>
+          <p>This tracker is for collecting recipe info about your brews.</p>
+          <button
+            className='pure-button pure-button-primary'
+            onClick={ () => this.props.push('/add') }>
+            Create one Now
+          </button>
+        </Card>
+      )
+    }
+    return recipes.map((recipe, i) => (
+      <Card className='pure-u-1-5' key={ `${recipe.name}-${recipe.id}` }>
+        <h3>{ recipe.name }</h3>
+        <small>{ recipe.id }</small>
+        <p>{ recipe.description }</p>
+      </Card>
+    ))
+  }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.recipes !== this.props.recipes) {
@@ -32,8 +50,8 @@ class PageHome extends Component {
       <section className='page'>
         { isLoading
           ? <p>Loading...</p>
-          : <div>
-            <PageHeader title='Home' />
+          : <div className='pure-g'>
+            <PageHeader className='pure-u-5-5' title='Home' />
             { this.renderRecipes(recipes) }
           </div>
         }
@@ -44,13 +62,15 @@ class PageHome extends Component {
 }
 
 PageHome.propTypes = {
-  loadRecipes: PropTypes.func.isRequired,
-  recipes: PropTypes.array,
-  isLoading: PropTypes.bool.isRequired
+  loadAllRecipes: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  recipes: PropTypes.array
 }
 
 const mapDispatchtoProps = {
-  loadRecipes
+  loadAllRecipes,
+  push
 }
 
 const mapStateToProps = (state) => ({

@@ -1,20 +1,41 @@
-import fetch from 'isomorphic-fetch'
+import api from 'utils/api'
+import { generateId } from 'utils'
 import { appLoading } from 'state/app/actions'
 
-export const SAVE_RECIPES = 'SAVE_RECIPES'
+export const LOAD_RECIPES = 'SAVE_RECIPES'
+export const SAVE_RECIPE = 'SAVE_RECIPE'
 
-export const saveRecipes = ({ recipes }) => (
+export const loadRecipes = ({ recipes }) => (
   {
-    type: SAVE_RECIPES,
+    type: LOAD_RECIPES,
     payload: recipes
   }
 )
 
-export const loadRecipes = () => (dispatch) => {
+export const saveRecipe = ({ recipe }) => (
+  {
+    type: SAVE_RECIPE,
+    payload: recipe
+  }
+)
+export const loadAllRecipes = () => (dispatch) => {
   dispatch(appLoading(true))
-  return fetch('http://localhost:3000/recipes')
-    .then(res => res.json())
-    .then(recipes => dispatch(saveRecipes({recipes})))
+  return api.get('recipes', null)
+    .then(recipes => dispatch(loadRecipes({recipes})))
     .then(() => dispatch(appLoading(false)))
 }
 
+export const createRecipe = ({ name, description }) => (dispatch) => {
+  dispatch(appLoading(true))
+  return api.post('recipes', { name, description, id: generateId() })
+    .then(res => {
+      dispatch(saveRecipe(res))
+      dispatch(appLoading(false))
+      return Promise.resolve(res)
+    })
+}
+
+export const deleteRecipe = (id) => () => {
+  return api.delete(`recipe/${id}`)
+    .then(resp => Promise.resolve(resp))
+}
